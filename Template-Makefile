@@ -34,7 +34,7 @@ define Package/$(PKG_NAME)
   CATEGORY:=Utilities
   SUBMENU:=Ciao Connectors
   TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=+python +python-base +ciao
+  DEPENDS:=ciao
 endef
 
 define Package/$(PKG_NAME)/description

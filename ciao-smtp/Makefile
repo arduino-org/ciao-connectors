@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_CONNECTOR:=smtp
 PKG_NAME:=ciao-connector-$(PKG_CONNECTOR)
-PKG_REVISION:=70e9a15
+PKG_REVISION:=22a49e525db12c9ac1188fae73d04c815b508f6d
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=1
 PKG_INST_DIR:=/root/.ciao
@@ -29,11 +29,12 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_REVISION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/ciao-$(PKG_CONNECTOR)
+define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
+  SUBMENU:=Ciao Connectors
   TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=+python +python-mini +ciao
+  DEPENDS:=ciao
 endef
 
 define Package/ciao-$(PKG_CONNECTOR)/description
@@ -44,7 +45,7 @@ define Build/Compile
     # NOOP
 endef
 
-define Package/ciao-$(PKG_CONNECTOR)/install
+define Package/$(PKG_NAME)/install
     $(INSTALL_DIR) $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
     $(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 		$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
@@ -53,4 +54,4 @@ define Package/ciao-$(PKG_CONNECTOR)/install
     $(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_CONF_DIR)
 endef
 
-$(eval $(call BuildPackage,ciao-$(PKG_CONNECTOR)))
+$(eval $(call BuildPackage,$(PKG_NAME)))
