@@ -29,14 +29,15 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_REVISION)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/ciao-$(PKG_CONNECTOR)
+define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
+  SUBMENU:=Ciao Connectors
   TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=+python +python-mini +ciao
+  DEPENDS:=+python +python-base +ciao
 endef
 
-define Package/ciao-$(PKG_CONNECTOR)/description
+define Package/$(PKG_NAME)/description
     Arduino Ciao - $(PKG_CONNECTOR) client connector library.
 endef
 
@@ -44,7 +45,7 @@ define Build/Compile
     # NOOP
 endef
 
-define Package/ciao-$(PKG_CONNECTOR)/install
+define Package/$(PKG_NAME)/install
     $(INSTALL_DIR) $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
     $(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
@@ -53,4 +54,4 @@ define Package/ciao-$(PKG_CONNECTOR)/install
     $(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_CONF_DIR)
 endef
 
-$(eval $(call BuildPackage,ciao-$(PKG_CONNECTOR)))
+$(eval $(call BuildPackage,$(PKG_NAME)))
