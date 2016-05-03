@@ -7,9 +7,9 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_CONNECTOR:=smtp
+PKG_CONNECTOR:=xmpp
 PKG_NAME:=ciao-connector-$(PKG_CONNECTOR)
-PKG_REVISION:=ebb84e419454d96f11b588182b4b1c53a8b383dc
+PKG_REVISION:=33001da8363e9bd789a1365214ba55b8b0c528f5
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=1
 PKG_INST_DIR:=/root/.ciao
@@ -34,7 +34,7 @@ define Package/$(PKG_NAME)
   CATEGORY:=Utilities
   SUBMENU:=Ciao
   TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=ciao +python-email
+  DEPENDS:=ciao
 endef
 
 define Package/ciao-$(PKG_CONNECTOR)/description
@@ -47,8 +47,8 @@ endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
-	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
+	$(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 
 	$(INSTALL_DIR) $(1)$(PKG_CONF_DIR)
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR).ciao.json.conf $(1)$(PKG_CONF_DIR)
