@@ -32,9 +32,9 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
-  SUBMENU:=Ciao Connectors
+  SUBMENU:=Ciao
   TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=ciao
+  DEPENDS:=+ciao
 endef
 
 define Package/$(PKG_NAME)/description
@@ -48,6 +48,7 @@ endef
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/src/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
+	$(CP) -R $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/* $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 
 	$(INSTALL_DIR) $(1)$(PKG_CONF_DIR)
