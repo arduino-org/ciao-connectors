@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_CONNECTOR:=xmpp
 PKG_NAME:=ciao-connector-$(PKG_CONNECTOR)
-PKG_REVISION:=33001da8363e9bd789a1365214ba55b8b0c528f5
+PKG_REVISION:=9a9377d01bc72ed5a9c27ce9896abffd483b978b
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=1
 PKG_INST_DIR:=/root/.ciao
@@ -30,14 +30,14 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_REVISION)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
+  DEPENDS:=+ciao
   SECTION:=utils
   CATEGORY:=Utilities
   SUBMENU:=Ciao
-  TITLE:=Arduino Ciao $(PKG_CONNECTOR) Connector
-  DEPENDS:=ciao
+  TITLE:=Arduino Ciao xmpp
 endef
 
-define Package/ciao-$(PKG_CONNECTOR)/description
+define Package/$(PKG_NAME)/description
     Arduino Ciao - $(PKG_CONNECTOR) client connector library.
 endef
 
@@ -48,6 +48,7 @@ endef
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/$(PKG_CONNECTOR).json.conf $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
+	$(CP) -R $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/* $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(PKG_CONNECTOR)/*.py $(1)$(PKG_INST_DIR)/$(PKG_CONNECTOR)
 
 	$(INSTALL_DIR) $(1)$(PKG_CONF_DIR)
