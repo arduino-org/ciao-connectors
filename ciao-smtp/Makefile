@@ -37,7 +37,7 @@ define Package/$(PKG_NAME)
   DEPENDS:=+ciao +python-email
 endef
 
-define Package/ciao-$(PKG_CONNECTOR)/description
+define Package/$(PKG_NAME)/description
     Arduino Ciao - $(PKG_CONNECTOR) client connector library.
 endef
 
