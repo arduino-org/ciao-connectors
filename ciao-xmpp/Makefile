@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_CONNECTOR:=xmpp
 PKG_NAME:=ciao-connector-$(PKG_CONNECTOR)
-PKG_REVISION:=9a9377d01bc72ed5a9c27ce9896abffd483b978b
+PKG_REVISION:=d59d3f81ae211caa9f98b479d9bf090a9614bfae
 PKG_VERSION:=0.0.1
 PKG_RELEASE:=1
 PKG_INST_DIR:=/root/.ciao

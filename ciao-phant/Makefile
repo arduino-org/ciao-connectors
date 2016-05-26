@@ -9,8 +9,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_CONNECTOR:=phant
 PKG_NAME:=ciao-connector-$(PKG_CONNECTOR)
-PKG_REVISION:=d3e3acec55cb467674fd9727e49d2872eb88d1c0
-PKG_VERSION:=0.0.1
+PKG_REVISION:=b5313c7ee3afb5de0d64c7583ce7f992d30d9964
+PKG_VERSION:=0.0.2
 PKG_RELEASE:=1
 PKG_INST_DIR:=/root/.ciao
 PKG_CONF_DIR:=/usr/lib/python2.7/ciao/conf
